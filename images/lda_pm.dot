@@ -1,0 +1,37 @@
+Digraph fig1 {
+rankdir = LR; //order things from left to right
+
+//define alpha and beta as existing
+alpha [shape=square, label=α];
+beta  [shape=square, label=β];
+//not strictly nescessary but helps if you want to
+//assign them specific shapes or colours
+
+subgraph cluster_phi
+{
+    label = "T"
+    labelloc="b"
+    labeljust="r"
+    phi[shape=circle, label=<φ<sub>t</sub>>];
+}
+
+subgraph cluster_D //names beginning with "cluster" get a box drawn, an odd hack
+{
+    label = "D"
+    labelloc="b"
+    labeljust="r"
+    theta [shape=circle, label=<θ<sub>d</sub>>];
+    subgraph cluster_Ld
+    {
+        label = <L<sub>d</sub>>
+        w [shape=circle, style=filled, label=<w<sub>dl</sub>>];
+        z [shape=circle, label=<z<sub>dl</sub>>];
+    }
+    theta -> z;
+    z -> w;
+}
+
+alpha -> theta;
+beta -> phi;
+phi -> w;
+}
